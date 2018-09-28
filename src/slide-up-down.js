@@ -29,24 +29,22 @@ export default {
 
   watch: {
     active() {
-      // allow vue update for async events to take effect
+      // add delay
       this.timeoutId = setTimeout(() => {
         this.layout()
-      }, 20)
+      }, this.delay)
     }
   },
 
   render (h) {
-    setTimeout(() => {
-      return h(
-        this.tag,
-        {
-          style: this.style,
-          ref: 'container'
-        },
-        this.$slots.default
-      )
-    }, this.delay);
+    return h(
+      this.tag,
+      {
+        style: this.style,
+        ref: 'container'
+      },
+      this.$slots.default
+    )
   },
 
   mounted () {
