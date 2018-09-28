@@ -14,7 +14,11 @@ export default {
     tag: {
       type: String,
       default: 'div'
-    }
+    },
+    delay: {
+      type: Number,
+      default: 0,
+    },
   },
 
   data: () => ({
@@ -33,14 +37,16 @@ export default {
   },
 
   render (h) {
-    return h(
-      this.tag,
-      {
-        style: this.style,
-        ref: 'container'
-      },
-      this.$slots.default
-    )
+    setTimeout(() => {
+      return h(
+        this.tag,
+        {
+          style: this.style,
+          ref: 'container'
+        },
+        this.$slots.default
+      )
+    }, this.delay);
   },
 
   mounted () {
