@@ -17,23 +17,26 @@ export default {
     },
     delay: {
       type: Number,
-      default: 0,
+      default: 10,
     },
   },
 
   data: () => ({
     scrollHeight: 0,
     isMounted: false,
-    timeoutId: null
+    active2: true,
   }),
 
   watch: {
     active() {
       // add delay
-      this.timeoutId = setTimeout(() => {
-        this.layout()
-      }, this.delay)
-    }
+      setTimeout(() => {
+        this.active2 = this.active;
+      }, this.delay);
+    },
+    active2() {
+      this.layout();
+    },
   },
 
   render (h) {
@@ -43,43 +46,42 @@ export default {
         style: this.style,
         ref: 'container'
       },
-      this.$slots.default
-    )
+      this.$slots.default,
+    );
   },
 
   mounted () {
-    window.addEventListener('resize', this.layout)
+    window.addEventListener('resize', this.layout);
 
-    this.layout()
+    this.layout();
 
     this.$nextTick(() => {
-      this.isMounted = true
-    })
+      this.isMounted = true;
+    });
   },
 
   destroyed () {
-    clearTimeout(this.timeoutId)
-    window.removeEventListener('resize', this.layout)
+    window.removeEventListener('resize', this.layout);
   },
 
   computed: {
     style () {
-      const heightSize = this.active ? this.scrollHeight : 0
+      const heightSize = this.active2 ? this.scrollHeight : 0
 
       return {
         overflow: 'hidden',
         'transition-property': 'height',
         height: this.isMounted ? heightSize + 'px' : 'auto',
         'transition-duration': this.duration + 'ms',
-        'transition-timing-function': this.easing
-      }
-    }
+        'transition-timing-function': this.easing,
+      };
+    },
   },
 
   methods: {
     layout () {
-      const { container } = this.$refs
-      this.scrollHeight = container.scrollHeight
+      const { container } = this.$refs;
+      this.scrollHeight = container.scrollHeight;
     }
   }
 }
