@@ -53,6 +53,7 @@ export default {
   mounted () {
     window.addEventListener('resize', this.layout);
 
+    this.active2 = this.active;
     this.layout();
 
     this.$nextTick(() => {

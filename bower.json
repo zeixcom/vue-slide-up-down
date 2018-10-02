@@ -1,0 +1,22 @@
+{
+  "name": "@zeix/vue-slide-up-down",
+  "description": "Like jQuery's slideUp/slideDown, but for Vue! Now with delay",
+  "main": "dist/vue-slide-up-down.js",
+  "authors": [
+    "Daniel Diekmeier"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "vue",
+    "slideup",
+    "slidedown"
+  ],
+  "homepage": "https://github.com/zeixcom/vue-slide-up-down",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
